@@ -6,8 +6,6 @@
 
 gem 'stripe', '2.8.0'
 
-register_asset "stylesheets/common/common.scss"
-
 load File.expand_path('../lib/discourse_donations/engine.rb', __FILE__)
 
 enabled_site_setting :discourse_donations_enabled
