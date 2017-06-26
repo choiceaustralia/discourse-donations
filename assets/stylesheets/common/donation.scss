@@ -66,13 +66,67 @@
   .membership-option{
     position: relative;
     text-align: left;
-    padding: 18px 0;
+    padding: 18px 5px;
     border: 1px #eee solid;
     font-size: 15px;
     line-height: 1.47;
     background: #fff;
     margin: 5px auto;
     display: block;
+  }
+
+  .membership-option{
+    > h2 {
+      font-weight: normal;
+      font-size: 21px;
+      line-height: 1.43;
+      letter-spacing: 0.6px;
+      color: #005c94;
+      margin-left: 18px;
+      margin-bottom: 20px;
+    }
+
+    > .section{
+      overflow: hidden;
+      padding-bottom: 10px;
+      .side{
+        width:28%;
+        min-height: 10px;
+        display: block;
+        float: left;
+        text-align: center;
+        > span{
+          font-size: 12px;
+          padding-left: 20px;
+          padding-right: 20px;
+          display: inline-block;
+        }
+      }
+      .main{
+        width: 72%;
+        display: block;
+        float: left;
+
+        > *{
+          margin-right:10px ;
+        }
+
+        .caption{
+          font-family: Lato;
+          font-size: 12px;
+          font-weight: 300;
+          font-style: italic;
+          letter-spacing: 0.8px;
+          text-align: left;
+          color: #767676;
+          display: inline-block;
+        }
+      }
+    }
+
+    > .option-body{
+      font-size: 14px;
+    }
   }
 
 
