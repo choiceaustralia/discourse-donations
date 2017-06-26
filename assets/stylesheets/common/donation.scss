@@ -30,9 +30,9 @@
     display: inline-block;
     overflow: auto;
   }
-.card-section{
-  width:380px;
-}
+  .card-section{
+    width:380px;
+  }
   /**
    * The CSS shown here will not be introduced in the Quickstart guide, but shows
    * how you can use CSS to style your Element's container.
@@ -59,4 +59,49 @@
     background-color: #fefde5 !important;
   }
 
+}
+
+.payment-container {
+
+  .membership-option{
+    position: relative;
+    text-align: left;
+    padding: 18px 0;
+    border: 1px #eee solid;
+    font-size: 15px;
+    line-height: 1.47;
+    background: #fff;
+    margin: 5px auto;
+    display: block;
+  }
+
+
+  .icon_member {
+    background-image: url('https://choice.community/uploads/default/original/2X/f/f99a4e14687ad8f0fa40903a55e58d256a08edb5.png');
+    background-size: 100%;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto;
+  }
+  .icon_defender {
+    background-image: url('https://choice.community/uploads/default/optimized/2X/2/20c52d6547caac157076ef7735863d0008576cae_1_428x500.png');
+    background-size: 100%;
+    width: 60px;
+    height: 70px;
+    margin: 0 auto;
+  }
+
+  ul.feature-list{
+    list-style: none;
+    li{
+      padding: 5px 0px;
+    }
+    li:before{
+      color: $green;
+      content: "\f00c";
+      font: normal normal normal 14px/1 FontAwesome;
+      margin-left: -1.5em;
+      margin-right: 0.5em;
+    }
+  }
 }
