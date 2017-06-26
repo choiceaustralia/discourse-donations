@@ -1,6 +1,6 @@
 
 .payment-container{
-  font-family: Lato;
+  font-family: lato;
   padding:15px 3px;
   background-color:  #eee;
   background-image: url(https://choice.community/uploads/default/original/2X/d/d9d0c6206249a0d56c311495ff689197c2c3aca7.png);
@@ -73,6 +73,7 @@
     background: #fff;
     margin: 5px auto;
     display: block;
+    border-radius: 4px;
   }
 
   .membership-option{
@@ -111,22 +112,32 @@
           margin-right:10px ;
         }
 
-        .caption{
-          font-family: Lato;
-          font-size: 12px;
-          font-weight: 300;
-          font-style: italic;
-          letter-spacing: 0.8px;
-          text-align: left;
-          color: #767676;
-          display: inline-block;
-        }
+      }
+      .control-group{
+        padding-left: 18px;
       }
     }
 
-    > .option-body{
-      font-size: 14px;
+    > .option-footer{
+      padding-left: 18px;
     }
+  }
+
+  .user-details{
+    text-align: left;
+    padding: 18px 5px 18px 18px;
+    border: 1px #eee solid;
+    border-radius: 4px;
+    font-size: 15px;
+    line-height: 1.47;
+    background: #fff;
+    margin: 5px auto;
+    display: block;
+  }
+
+  .section-label{
+    font-size: 15px;
+    font-family: Lato;
   }
 
 

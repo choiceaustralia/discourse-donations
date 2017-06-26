@@ -2,7 +2,6 @@
     {{#if consumerDefenderWithMembership}}
         <div class="mmembership-option">
             <h3>[$25/quarter] Consumer Defender + CHOICE Membership</h3>
-
             <ul>
                 <li>Choice.community Access</li>
                 <li>Defender Badge (while supplies last)</li>
@@ -27,12 +26,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="section control-group" >
-                <label>
-                    Choose what you want to pay every quarter
-                </label>
-                <div class="controls controls-dropdown">
-                    {{combo-box valueAttribute="value" content=donateAmounts value=amount}}
+            <div class="section" >
+                <div class="control-group">
+                    <label>
+                        Choose what you want to pay every quarter
+                    </label>
+                    <div class="controls controls-dropdown">
+                        {{combo-box valueAttribute="value" content=donateAmounts value=amount}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,35 +46,38 @@
   </div>
 
   {{#if anon}}
-    <div class="control-group">
-      <label class="control-label" for="card-element">{{i18n 'user.email.title'}}</label>
-      <div class="controls">
-        {{text-field value=email}}
-      </div>
-    </div>
+      <label class="section-label">Create New Account</label>
+      <div class="user-details">
+          <div class="control-group">
+              <label class="control-label" for="card-element">{{i18n 'user.email.title'}}</label>
+              <div class="controls">
+                  {{text-field value=email}}
+              </div>
+          </div>
 
-    {{#if create_accounts}}
-      <div class="control-group">
-        <label class="control-label" for="card-element">{{i18n 'user.username.title'}}</label>
-        <div class="controls">
-          {{text-field value=username}}
-        </div>
-      </div>
+          {{#if create_accounts}}
+              <div class="control-group">
+                  <label class="control-label" for="card-element">{{i18n 'user.username.title'}}</label>
+                  <div class="controls">
+                      {{text-field value=username}}
+                  </div>
+              </div>
 
-      <div class="control-group">
-        <label class="control-label" for="card-element">{{i18n 'user.name.title'}}</label>
-        <div class="controls">
-          {{text-field value=name}}
-        </div>
-      </div>
+              <div class="control-group">
+                  <label class="control-label" for="card-element">{{i18n 'user.name.title'}}</label>
+                  <div class="controls">
+                      {{text-field value=name}}
+                  </div>
+              </div>
 
-      <div class="control-group">
-        <label class="control-label" for="card-element">{{i18n 'user.password.title'}}</label>
-        <div class="controls">
-          {{input type="password" value=password}}
-        </div>
+              <div class="control-group">
+                  <label class="control-label" for="card-element">{{i18n 'user.password.title'}}</label>
+                  <div class="controls">
+                      {{input type="password" value=password}}
+                  </div>
+              </div>
+          {{/if}}
       </div>
-    {{/if}}
   {{/if}}
 
   <div class="control-group">
