@@ -1,37 +1,13 @@
 
-@import url('https://fonts.googleapis.com/css?family=Lato');
-
-// Colour Palette
-$green: #44920e;
-$blue_dark: #005c94;
-$blue_light: #2e90e9;
-$orange: #ffb100;
-$grey_3: #333;
-$grey_7: #767676;
-$grey_e: #eee;
-
-// Settings
-$width_avatar_col: 120px;
-// Settings
-$background_color: $grey_e;
-$border_radius: 5px;
-$border_size: 7px;
-$margin_left: 18px;
-$icon_size: 58px;
-$bg_url: url('https://choice.community/uploads/default/original/2X/d/d9d0c6206249a0d56c311495ff689197c2c3aca7.png');
-
-// Common CSS
-
 .payment-container{
   font-family: Lato;
   padding:15px 3px;
-  background-color: $background_color;
-  background-image: $bg_url;
+  background-color:  #eee;
+  background-image: url(https://choice.community/uploads/default/original/2X/d/d9d0c6206249a0d56c311495ff689197c2c3aca7.png);
   display: block;
   text-align: center;
 
   &:before {
-
     background-color: #eee;
     background-image: url(https://choice.community/uploads/default/original/2X/d/d9d0c6206249a0d56c311495ff689197c2c3aca7.png);
     display: block;
