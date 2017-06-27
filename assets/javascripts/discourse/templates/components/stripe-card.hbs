@@ -35,7 +35,7 @@
 
                         <select onchange={{action "selectOption" value="target.value"}}>
                             {{#each donateAmounts as |option|}}
-                                <option value={{option}} >{{option.name}}</option>
+                                <option value={{option.value}} >{{option.name}}</option>
                             {{/each}}
                         </select>
                     </div>

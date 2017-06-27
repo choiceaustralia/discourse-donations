@@ -103,8 +103,8 @@ export default Ember.Component.extend({
     },
       selectOption(selectedOption) {
           this.set('selectedOption', selectedOption);
-          this.set('amount', selectedOption.value);
-          console.log("change ")
+          this.set('amount', selectedOption);
+          console.log("change ", selectedOption)
       }
   }
 });
