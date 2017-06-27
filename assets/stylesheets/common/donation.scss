@@ -189,4 +189,15 @@
       margin-right: 0.5em;
     }
   }
+
+  .secure-banner{
+    display: block;
+    padding: 10px 5px 10px 1px;
+    overflow: hidden;
+
+    > img{
+      width: 95%;
+      height: auto;
+    }
+  }
 }
