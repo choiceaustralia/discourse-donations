@@ -32,7 +32,7 @@ export default Ember.Component.extend({
     this.set('settings', getRegister(this).lookup('site-settings:main'));
     this.set('create_accounts', this.get('anon') && this.get('settings').discourse_donations_enable_create_accounts);
     this.set('stripe', Stripe(this.get('settings').discourse_donations_public_key));
-    this.set('amount', this.get('donateAmounts.firstObject'));
+    this.set('amount', this.get('donateAmounts.firstObject').value);
   },
 
   card: function() {
