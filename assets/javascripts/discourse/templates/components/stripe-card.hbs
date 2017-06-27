@@ -32,12 +32,12 @@
                         Choose what you want to pay every quarter
                     </label>
                     <div class="controls controls-dropdown">
-                        <!--{{combo-box valueAttribute="value" content=donateAmounts value=amount}}-->
-                        {{view "select" content=donateAmounts
-                               optionLabelPath="content.name"
-                               optionValuePath="content.value"
-                               prompt="select payment:"
-                               selection=amount}}
+                        {{combo-box valueAttribute="value" content=donateAmounts value=amount}}
+                        <select onchange={{action "selectOption" value="target.value"}}>
+                            {{#each donateAmounts as |option|}}
+                                <option value={{option}} selected={{eq selectedOption option}}>{{option.name}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
             </div>
