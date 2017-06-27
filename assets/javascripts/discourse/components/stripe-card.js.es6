@@ -17,7 +17,6 @@ export default Ember.Component.extend({
   ],
   result: [],
   amount: null,
-  selectedOption:null,
   stripe: null,
   transactionInProgress: null,
   settings: null,
@@ -99,10 +98,6 @@ export default Ember.Component.extend({
           }
         }
       });
-    },
-      selectOption(selectedOption) {
-          this.set('selectedOption', selectedOption);
-          this.set('amount', selectedOption.value);
-      }
+    }
   }
 });
