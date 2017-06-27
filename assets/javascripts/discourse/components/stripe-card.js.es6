@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   ],
   result: [],
   amount: null,
+  selectedOption:null,
   stripe: null,
   transactionInProgress: null,
   settings: null,
@@ -85,6 +86,7 @@ export default Ember.Component.extend({
           }
           else {
             params.amount = self.get('amount');
+            console.log("amount", self.get('amount'));
           }
 
           if(!self.get('paymentSuccess')) {
@@ -98,6 +100,10 @@ export default Ember.Component.extend({
           }
         }
       });
-    }
+    },
+      selectOption(selectedOption) {
+          this.set('selectedOption', selectedOption);
+          this.set('amount', selectedOption.value);
+      }
   }
 });
