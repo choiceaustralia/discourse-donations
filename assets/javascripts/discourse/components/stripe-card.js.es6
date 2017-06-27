@@ -17,7 +17,7 @@ export default Ember.Component.extend({
   ],
   result: [],
   amount: null,
-  selectedOption:this.donateAmounts[0],
+  selectedOption:null,
   stripe: null,
   transactionInProgress: null,
   settings: null,
