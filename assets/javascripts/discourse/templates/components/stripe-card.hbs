@@ -31,9 +31,8 @@
                     <label>
                         Choose what you want to pay every quarter
                     </label>
-                    <div class="controls controls-dropdown" >
-
-                        <select onchange={{action "selectOption" value="target.value"}}>
+                    <div class="controls" >
+                        <select class="form-control" onchange={{action "selectOption" value="target.value"}}>
                             {{#each donateAmounts as |option|}}
                                 <option value={{option.value}} >{{option.name}}</option>
                             {{/each}}
