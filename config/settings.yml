@@ -4,8 +4,10 @@ plugins:
     client: true
   discourse_donations_secret_key:
     client: false
+    default: ''
   discourse_donations_public_key:
     client: true
+    default: ''
   discourse_donations_enable_create_accounts:
     client: true
     default: false
