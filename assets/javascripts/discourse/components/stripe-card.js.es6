@@ -3,12 +3,12 @@ import { getRegister } from 'discourse-common/lib/get-owner';
 
 export default Ember.Component.extend({
   donateAmounts: [
-    { value: 1, name: '$1.00'},
-    { value: 2, name: '$2.00'},
-    { value: 5, name: '$5.00'},
-    { value: 10, name: '$10.00'},
-    { value: 20, name: '$20.00'},
-    { value: 50, name: '$50.00'}
+    { value: 1, name: '1.00'},
+    { value: 2, name: '2.00'},
+    { value: 5, name: '5.00'},
+    { value: 10, name: '10.00'},
+    { value: 20, name: '20.00'},
+    { value: 50, name: '50.00'}
   ],
   result: [],
   amount: null,
@@ -18,7 +18,7 @@ export default Ember.Component.extend({
 
   init() {
     this._super();
-    this.set('anon', (Discourse.User.current() == null));
+    this.set('anon', (!Discourse.User.current()));
     this.set('settings', getRegister(this).lookup('site-settings:main'));
     this.set('create_accounts', this.get('anon') && this.get('settings').discourse_donations_enable_create_accounts);
     this.set('stripe', Stripe(this.get('settings').discourse_donations_public_key));
@@ -27,7 +27,7 @@ export default Ember.Component.extend({
   card: function() {
     let elements = this.get('stripe').elements();
     return elements.create('card', {
-      hidePostalCode: this.get('settings').discourse_donations_hide_zip_code
+      hidePostalCode: !this.get('settings').discourse_donations_zip_code
     });
   }.property('stripe'),
 

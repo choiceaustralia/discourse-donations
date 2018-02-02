@@ -1,4 +1,3 @@
-
 module DiscourseDonations
   class Stripe
     attr_reader :charge, :currency, :description
@@ -9,14 +8,29 @@ module DiscourseDonations
       @currency = opts[:currency]
     end
 
-    def charge(email, opts)
+    def checkoutCharge(email, token, amount)
+      customer = ::Stripe::Customer.create(
+          :email => email,
+          :source  => token
+      )
+
+      charge = ::Stripe::Charge.create(
+        :customer => customer.id,
+        :amount => amount,
+        :description => @description,
+        :currency => @currency
+      )
+      charge
+    end
+
+    def charge(email, token, amount)
       customer = ::Stripe::Customer.create(
         email: email,
-        source: opts[:stripeToken]
+        source: token
       )
       @charge = ::Stripe::Charge.create(
         customer: customer.id,
-        amount: opts[:amount],
+        amount: amount,
         description: description,
         currency: currency
       )

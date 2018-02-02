@@ -3,8 +3,10 @@ plugins:
     default: false
     client: true
   discourse_donations_secret_key:
+    default: 'YOUR STRIPE API SECRET'
     client: false
   discourse_donations_public_key:
+    default: 'YOUR STRIPE API KEY'
     client: true
   discourse_donations_enable_create_accounts:
     client: true
@@ -12,10 +14,16 @@ plugins:
   discourse_donations_description:
     client: true
     default: 'Donation'
+  discourse_donations_shop_name:
+    client: true
+    default: 'Your shop name'
   discourse_donations_currency:
     client: true
     default: 'USD'
-  discourse_donations_hide_zip_code:
+  discourse_donations_zip_code:
+    default: false
+    client: true
+  discourse_donations_billing_address:
     default: true
     client: true
   discourse_donations_reward_badge_name:
@@ -24,3 +32,6 @@ plugins:
   discourse_donations_reward_group_name:
     client: false
     default: 'Donation'
+  discourse_donations_page_description:
+    client: true
+    default: ''

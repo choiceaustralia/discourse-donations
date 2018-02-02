@@ -18,26 +18,30 @@ module DiscourseDonations
     let(:body) { JSON.parse(response.body) }
 
     before do
+      SiteSetting.stubs(:disable_discourse_narrative_bot_welcome_post).returns(true)
       SiteSetting.stubs(:discourse_donations_secret_key).returns('secret-key-yo')
       SiteSetting.stubs(:discourse_donations_description).returns('charity begins at discourse plugin')
       SiteSetting.stubs(:discourse_donations_currency).returns('AUD')
     end
 
+    # Workaround for rails-5 issue. See https://github.com/thoughtbot/shoulda-matchers/issues/1018#issuecomment-315876453
+    let(:allowed_params) { {create_account: 'true', email: 'email@example.com', password: 'secret', username: 'mr-pink', name: 'kirsten', amount: 100, stripeToken: 'rrurrrurrrrr'} }
+
     it 'whitelists the params' do
-      params = { create_account: 'true', email: 'email@example.com', password: 'secret', username: 'mr-pink', name: 'kirsten', amount: 100, stripeToken: 'rrurrrurrrrr' }
-      should permit(:name, :username, :email, :password, :create_account).for(:create, params: params)
+      should permit(:name, :username, :email, :password, :create_account).
+          for(:create, params: { params: allowed_params })
     end
 
     it 'responds ok for anonymous users' do
-      post :create, { email: 'foobar@example.com' }
-      expect(body['messages']).to include(I18n.t('donations.payment.success'))
+      post :create, params: { email: 'foobar@example.com' }
+      expect(body['messages'][0]).to end_with(I18n.t('donations.payment.success'))
       expect(response).to have_http_status(200)
     end
 
     it 'does not expect a username or email if accounts are not being created' do
       current_user = log_in(:coding_horror)
-      post :create, { create_account: 'false' }
-      expect(body['messages']).to include(I18n.t('donations.payment.success'))
+      post :create, params: { create_account: 'false' }
+      expect(body['messages'][0]).to end_with(I18n.t('donations.payment.success'))
       expect(response).to have_http_status(200)
     end
 
@@ -51,17 +55,17 @@ module DiscourseDonations
         end
 
         it 'does not create user accounts' do
-          post :create, params
+          post :create, params: params
         end
 
         it 'does not create user accounts if the user is logged in' do
           log_in :coding_horror
-          post :create, params
+          post :create, params: params
         end
 
         it 'does not create user accounts when settings are disabled and params are not' do
           log_in :coding_horror
-          post :create, params.merge(create_account: true, email: 'email@example.com', password: 'secret', username: 'mr-brown', name: 'hacker-guy')
+          post :create, params: params.merge(create_account: true, email: 'email@example.com', password: 'secret', username: 'mr-brown', name: 'hacker-guy')
         end
       end
 
@@ -74,7 +78,7 @@ module DiscourseDonations
         end
 
         it 'enqueues the user account create' do
-          post :create, params
+          post :create, params: params
         end
       end
     end
@@ -85,19 +89,19 @@ module DiscourseDonations
       before { SiteSetting.stubs(:discourse_donations_enable_create_accounts).returns(true) }
 
       describe 'requires an email' do
-        before { post :create, params.merge(email: '') }
+        before { post :create, params: params.merge(email: '') }
         include_examples 'failure response', 'login.missing_user_field'
       end
 
       describe 'requires a username' do
-        before { post :create, params.merge(username: '') }
+        before { post :create, params: params.merge(username: '') }
         include_examples 'failure response', 'login.missing_user_field'
       end
 
       describe 'reserved usernames' do
         before do
           User.expects(:reserved_username?).returns(true)
-          post :create, params
+          post :create, params: params
         end
 
         include_examples 'failure response', 'login.reserved_username'
@@ -106,7 +110,7 @@ module DiscourseDonations
       describe 'minimum password length' do
         before do
           User.expects(:max_password_length).returns(params[:password].length - 1)
-          post :create, params
+          post :create, params: params
         end
 
         include_examples 'failure response', 'login.password_too_long'
@@ -119,13 +123,13 @@ module DiscourseDonations
 
       shared_examples 'no rewards' do
         it 'has no rewards' do
-          post :create, params
+          post :create, params: params
           expect(body['rewards']).to be_empty
         end
       end
 
       describe 'new user' do
-        let(:params) { { create_account: 'true', email: 'dood@example.com', password: 'secret', name: 'dood', username: 'mr-dood' } }
+        let(:params) { { create_account: 'true', email: 'dood@example.com', password: 'secretsecret', name: 'dood', username: 'mr-dood' } }
 
         before { SiteSetting.stubs(:discourse_donations_enable_create_accounts).returns(true) }
 
@@ -150,7 +154,7 @@ module DiscourseDonations
         end
 
         include_examples 'no rewards' do
-          let(:params) { nil }
+          let(:params) { {} }
 
           before do
             stripe.stubs(:create).returns({ 'paid' => true })
